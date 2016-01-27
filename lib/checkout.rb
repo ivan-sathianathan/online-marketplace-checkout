@@ -1,34 +1,31 @@
 class Checkout
 
-  attr_reader :basket, :items
+  attr_reader :order, :product_list
 
-  def initialize
-    @basket = {}
-    @items = {
-              "001": {name: "Item 1", price: "£1.00"},
-              "002": {name: "Item 2", price: "£2.00"},
-              "003": {name: "Item 3", price: "£3.50"}
-            }
+  def initialize(order = Order.new, product_list = ProductList.new)
+    @order = order
+    @product_list = product_list
   end
 
   def scan(item)
-    item = item.to_sym
-    basket[item] ? basket[item] += 1 : basket[item] = 1
+    order.add(item)
   end
 
   def total
     total = 0
-    basket.each do | k, v |
-      item_value = convert_to_float(items[k][:price])
+    order.basket.each do | k, v |
+      item_value = product_list.items[k][:price]
       total += item_value * v
     end
-    '£%.2f' % total
+    print_total(total)
   end
 
   private
 
-  def convert_to_float(item_price)
-    item_price.gsub(/[£,]/,'').to_f
+  def print_total(total)
+    '£%.2f' % total
   end
 
 end
+
+# refactor out product list from initialize method. should come in pricing engine

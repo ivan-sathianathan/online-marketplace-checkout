@@ -12,6 +12,4 @@ class Order
     basket[item_id] += 1
   end
 
-
-
 end
