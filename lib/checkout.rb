@@ -1,40 +1,38 @@
 class Checkout
 
-  attr_reader :order, :product_list, :promotions
+  attr_reader :product_list, :promotions, :basket
 
-  def initialize( order = Order.new,
-                  product_list = ProductList.new,
-                  promotions = Promotions.new
-                )
-    @order = order
+  def initialize(product_list = ProductList.new, promotions = Promotions.new)
     @product_list = product_list
     @promotions = promotions
+    @basket = Hash.new(0)
   end
 
   def scan(item)
-    order.add(item)
-    order.basket
+    fail "ProductId #{item} does not exist" unless product_list.has_product?(item)
+    basket[item] += 1
   end
 
   def total
+    initial_total = total_before_discounts(basket)
+    discounted_total = promotions.apply(initial_total, basket)
+    print_total(discounted_total)
+  end
+
+
+  private
+
+  def total_before_discounts(basket)
     total = 0
-    order.basket.each do | k, v |
+    basket.each do | k, v |
       item_value = product_list.items[k][:price]
       total += item_value * v
     end
-    if !order.basket[1].nil?
-      total -= (order.basket[1] * 0.75) if promotions.items_discount(order.basket)
-    end
-    total = total * 0.9 if promotions.spend_discount(total)
-    print_total(total)
+    total
   end
-
-  private
 
   def print_total(total)
     '£%.2f' % total
   end
 
 end
-
-# refactor out product list from initialize method. should come in pricing engine

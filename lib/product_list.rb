@@ -12,8 +12,8 @@ class ProductList
     @items = ITEMS
   end
 
-  def has_product?(item_id)
-    !items[item_id].nil?
+  def has_product?(item)
+    !items[item].nil?
   end
 
 end
