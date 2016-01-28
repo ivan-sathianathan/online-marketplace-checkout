@@ -1,7 +1,7 @@
 require 'lavender_hearts_promotion'
 
 describe LavenderHeartsPromotion do
-  subject (:lavender_hearts_promotion) { described_class.new }
+  subject(:lavender_hearts_promotion) { described_class.new }
 
 
   context '#number_of_lavender_hearts' do
