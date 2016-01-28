@@ -1,13 +1,15 @@
 class Promotions
 
-  def apply(total, basket)
-    new_total = items_discount(total, basket)
-    spend_discount(new_total)
+  attr_reader :lavender_hearts_promotion
+
+  def initialize(lavender_hearts_promotion = LavenderHeartsPromotion.new)
+    @lavender_hearts_promotion = lavender_hearts_promotion
   end
 
-  def items_discount(total, basket)
-    discount = !basket[1].nil? && basket[1] >= 2 ? ((basket[1] * 0.75)).round(2) : 0
-    total - discount
+  def apply(total, basket)
+    new_total = total - lavender_hearts_promotion.discount_amount(basket)
+    # new_total = items_discount(total, basket)
+    spend_discount(new_total)
   end
 
   def spend_discount(new_total)

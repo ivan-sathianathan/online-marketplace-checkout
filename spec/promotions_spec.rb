@@ -12,23 +12,17 @@ describe Promotions do
       expect(promotions).to receive(:spend_discount).with(total)
       promotions.apply(total, basket)
     end
-    it 'should call #items_discount with basket as argument' do
+    it 'should call #lavender_hearts_promotion.discount_amount with basket as argument' do
       total = 59
-      expect(promotions).to receive(:items_discount).with(total, basket).and_return(20)
+      expect(promotions.lavender_hearts_promotion).to receive(:discount_amount).with(basket).and_return(20)
       promotions.apply(total, basket)
     end
   end
 
   context '#spend_discount' do
     it 'returns true if total spend greater than £60' do
-      expect(promotions.spend_discount(61)).to be(54.9)
+      expect(promotions.spend_discount(61)).to eq(54.9)
     end
   end
 
-  context '#items_discount' do
-    it 'returns discount if basket includes two or more lavender hearts' do
-      total = 10
-      expect(promotions.items_discount(total, basket)).to be(8.5)
-    end
-  end
 end
