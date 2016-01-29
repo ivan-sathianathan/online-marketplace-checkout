@@ -7,6 +7,7 @@ class Promotions
     @total_spend_promotion = total_spend_promotion
   end
 
+
   def apply(order_total, order_basket)
     lavender_hearts_discount = lavender_hearts_promotion.discount_amount(order_basket)
     new_total = order_total - lavender_hearts_discount

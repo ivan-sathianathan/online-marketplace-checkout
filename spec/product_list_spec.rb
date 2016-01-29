@@ -10,7 +10,7 @@ describe ProductList do
   end
 
   context "#has_product?" do
-    it 'tells if a product is included in product list' do
+    it 'tells if an item is included in product list' do
       expect(product_list.has_product?(001)).to be(true)
     end
   end

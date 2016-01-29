@@ -10,7 +10,7 @@ describe Checkout do
   end
 
   context '#total' do
-    it 'displays total price of basket' do
+    it 'displays final price of basket' do
       checkout.scan(001)
       checkout.scan(002)
       expect(checkout.total).to eq("£54.25")
