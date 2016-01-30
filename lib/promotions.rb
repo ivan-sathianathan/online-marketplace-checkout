@@ -12,7 +12,7 @@ class Promotions
     lavender_hearts_discount = lavender_hearts_promotion.discount_amount(order_basket)
     new_total = order_total - lavender_hearts_discount
     total_spend_discount = total_spend_promotion.discount_amount(new_total)
-    final_total = order_total - total_spend_discount
+    final_total = new_total - total_spend_discount
   end
 
 end
