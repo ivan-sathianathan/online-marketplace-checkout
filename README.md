@@ -8,7 +8,6 @@
 2. In terminal, go into cloned repo and run ``bundle install``
 3. Run ``rspec`` to see tests
 
-
 ##Class Structure
 
 | Class | Description |
@@ -32,6 +31,6 @@ The intention of this is that it should be relatively easy to (1) create new ind
 
 The Order class currently has two responsibilities: (1) to details what's in the current basket and (2) to calculate the value of this basket prior to discount. This class' design could be improved to adhere to the Single Responsibility Principle by creating a new class OrderBasketValue class which would be called by the 'total' method in the Order class and contain the logic for calculating the basket value.
 
-Another design improvement would centre around the Promotion class. Firstly, I would like to be able to specify the individual promotions to be applied as initialization arguments, instead of having these promotions specified in the code itself.
+Another design improvement would be to initialize the Checkout class with individual promotions as arguments which would then be passed to the Checkout's total method. Currently, the individual promotions are detailed explicitly in the Promotions class and the behaviour of this class should be decoupled from these individual promotions. To accomplish this, I would initialize the Checkout class with the promotions as a hash, with keys set to "basket promotions" and "spend promotions" and values set as the specific promotions to be applied. The Promotions class would then apply the promotions accordingly.
 
 
