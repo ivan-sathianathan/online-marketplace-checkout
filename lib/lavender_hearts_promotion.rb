@@ -5,7 +5,7 @@ class LavenderHeartsPromotion
 
   def discount_amount(basket)
     if apply_discount?(basket)
-      UNIT_DISCOUNT_AMOUNT * number_of_lavender_hearts(basket)
+      (UNIT_DISCOUNT_AMOUNT * number_of_lavender_hearts(basket)).round(2)
     else
       0
     end
