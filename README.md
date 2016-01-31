@@ -4,6 +4,10 @@
 
 ##How to run
 
+1. Clone repo: ``git clone https://github.com/ivan-sathianathan/online-marketplace-checkout.git``
+2. In terminal, go into cloned repo and run ``bundle install``
+3. Run ``rspec`` to see tests
+
 
 ##Class Structure
 
