@@ -1,9 +1,12 @@
+require_relative 'promotions'
+require_relative 'order'
+
+
 class Checkout
 
   attr_reader :product_list, :promotions, :order, :basket
 
-  def initialize(product_list = ProductList.new, promotions = Promotions.new, order = Order.new)
-    @product_list = product_list
+  def initialize(promotions = Promotions.new, order = Order.new)
     @promotions = promotions
     @order = order
     @basket = Hash.new(0)

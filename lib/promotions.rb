@@ -1,3 +1,6 @@
+require_relative 'lavender_hearts_promotion'
+require_relative 'total_spend_promotion'
+
 class Promotions
 
   attr_reader :lavender_hearts_promotion, :total_spend_promotion, :order

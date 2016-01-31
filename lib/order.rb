@@ -1,3 +1,5 @@
+require_relative 'product_list'
+
 class Order
 
   attr_reader :basket, :product_list, :total
