@@ -4,7 +4,7 @@ require_relative 'order'
 
 class Checkout
 
-  attr_reader :product_list, :promotions, :order, :basket
+  attr_reader :promotions, :order, :basket
 
   def initialize(promotions = Promotions.new, order = Order.new)
     @promotions = promotions
