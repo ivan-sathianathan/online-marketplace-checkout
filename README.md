@@ -20,13 +20,14 @@
 | Lavender Hearts Promotion | Details
 | Total Spend Promotion |
 
+##Design consideration
 
-##What I like
+The main design consideration that I had to grapple with was making the checkout system extensible to future promotions. At present, promotions come in two distinct flavours: (1) promotions that are applied depending on your basket of items (e.g. buy one get one free on a certain item, buy more than one item and get a discount on these, etc) and (2) promotions that are applied against your total spend (e.g. spend over £50 and get 10% off, spend over £100 and get 15% off, etc). 
 
-I like
+Instead of capturing this promotion logic inside the Order or Checkout classes, I created the Promotion class and its 'apply' method to be called by the Checkout whenever the total had to be calculated. The intention of this is that the Promotion class contains the logic for which promotions should be applied by the checkout. Similarly, I created individual promotion classes to capture the logic relating to each promotion. The intention of this is that it should be relatively easy to (1) create new individual promotion classes for future offers, and (2) adapt the Promotions class so that these promotions are called by the checkout.
 
-##What I don't like
+##Further improvements
 
-There are a few design aspects that I would like to improve:
- - the Order class currently has two responsibilities: (1) to details what's in the current basket and (2) to calculate the value of this basket prior to discount. I would like to create a new class OrderBasketValue which would send to the Order the class the value of its current basket
- - there is too much knowledge contained in the Promotion class' 'apply' method; this method knows to call the apply_discount methods in each of the individual promotion classes, how   currently knows too much about the behavior of the two "sub-promotion" classes (LavenderHeartsPromotion and TotalSpendPromotion), which is reflected by the Promotion 'apply' method knowingto call the 'discount_amount' method in both of the sub-promotion classes. Ideally, the apply method in the Promotion class would call a similar apply method in the sub-promotion classes which would  
+The Order class currently has two responsibilities: (1) to details what's in the current basket and (2) to calculate the value of this basket prior to discount. This class' design could be improved to adhere to the Single Responsibility Principle by creating a new class OrderBasketValue class which would be called by the 'total' method in the Order class and contain the logic for calculating the basket value.
+
+Another design improvement would centre around the Promotion class. Firstly, I would like to be able to specify the individual promotions to be applied as initialization arguments, instead of having these promotions specified in the code itself.
