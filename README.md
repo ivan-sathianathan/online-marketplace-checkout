@@ -9,20 +9,15 @@
 3. Run ``rspec`` to see tests
 
 
-``001 > require './lib/checkout'``
-
-``002 > co = Checkout.new``
-
-``003 > co.scan(001)``
-
-``004 > co.scan(002)``
-
-``005 > co.scan(003)``
-
-``006 > co.total``
-
- ``=> "£66.15"``
-
+```
+001 > require './lib/checkout'
+002 > co = Checkout.new
+003 > co.scan(001)
+004 > co.scan(002)
+005 > co.scan(003)
+006 > co.total
+ => "£66.15"
+```
 
 ##Class Structure
 
